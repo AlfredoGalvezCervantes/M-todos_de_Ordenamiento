@@ -1,0 +1,41 @@
+def merge_sort(arr):
+    if len(arr) > 1:
+        medio = len(arr) // 2  # Encuentra el punto medio del arreglo
+        mitad_izquierda = arr[:medio]  # Divide el arreglo en dos mitades
+        mitad_derecha = arr[medio:]
+
+        merge_sort(mitad_izquierda)  # Llamada recursiva para ordenar la mitad izquierda
+        merge_sort(mitad_derecha)   # Llamada recursiva para ordenar la mitad derecha
+
+        i = j = k = 0
+
+        # Copia los datos en las mitades temporales mitad_izquierda[] y mitad_derecha[]
+        while i < len(mitad_izquierda) and j < len(mitad_derecha):
+            if mitad_izquierda[i] < mitad_derecha[j]:
+                arr[k] = mitad_izquierda[i]
+                i += 1
+            else:
+                arr[k] = mitad_derecha[j]
+                j += 1
+            k += 1
+
+        # Comprueba si quedan elementos en alguna de las mitades y los copia
+        while i < len(mitad_izquierda):
+            arr[k] = mitad_izquierda[i]
+            i += 1
+            k += 1
+
+        while j < len(mitad_derecha):
+            arr[k] = mitad_derecha[j]
+            j += 1
+            k += 1
+
+# Ejemplo de uso
+arr = [64, 34, 25, 12, 22, 11, 90]
+print("Arreglo desordenado:", arr)
+merge_sort(arr)
+print("Arreglo ordenado:", arr)
+
+#Resultado
+#Arreglo desordenado: [64, 34, 25, 12, 22, 11, 90]
+#Arreglo ordenado: [11, 12, 22, 25, 34, 64, 90]
