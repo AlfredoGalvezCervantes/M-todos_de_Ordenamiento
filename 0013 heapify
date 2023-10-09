@@ -1,0 +1,42 @@
+def heapify(arr, n, i):
+    # Inicializamos el índice más grande como la raíz
+    mas_grande = i
+    izquierda = 2 * i + 1
+    derecha = 2 * i + 2
+
+    # Comparamos con el hijo izquierdo
+    if izquierda < n and arr[izquierda] > arr[mas_grande]:
+        mas_grande = izquierda
+
+    # Comparamos con el hijo derecho
+    if derecha < n and arr[derecha] > arr[mas_grande]:
+        mas_grande = derecha
+
+    # Si el índice más grande no es la raíz, intercambiamos
+    if mas_grande != i:
+        arr[i], arr[mas_grande] = arr[mas_grande], arr[i]
+
+        # Llamada recursiva para continuar con la estructura del montículo
+        heapify(arr, n, mas_grande)
+
+def heap_sort(arr):
+    n = len(arr)
+
+    # Construimos un montículo (heap) máximo
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(arr, n, i)
+
+    # Extraemos elementos del montículo uno por uno
+    for i in range(n - 1, 0, -1):
+        # Intercambiamos el elemento raíz (el más grande) con el último elemento
+        arr[i], arr[0] = arr[0], arr[i]
+
+        # Llamamos heapify en el montículo reducido
+        heapify(arr, i, 0)
+
+# Ejemplo de uso
+arr = [12, 11, 13, 5, 6, 7]
+print("Arreglo desordenado:", arr)
+
+heap_sort(arr)
+print("Arreglo ordenado:", arr)
