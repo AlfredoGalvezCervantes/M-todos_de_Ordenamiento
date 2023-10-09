@@ -1,0 +1,38 @@
+import heapq
+
+def balanced_multiway_merge(arrays):
+    result = []
+    heap = []
+
+    # Inicializa el heap con el primer elemento de cada secuencia
+    for i, array in enumerate(arrays):
+        if len(array) > 0:
+            heapq.heappush(heap, (array[0], i, 0))
+
+    while heap:
+        val, array_idx, element_idx = heapq.heappop(heap)
+        result.append(val)
+
+        # Mueve al siguiente elemento de la secuencia actual
+        element_idx += 1
+
+        # Si hay más elementos en la secuencia actual, agréguelos al heap
+        if element_idx < len(arrays[array_idx]):
+            heapq.heappush(heap, (arrays[array_idx][element_idx], array_idx, element_idx))
+
+    return result
+
+# Ejemplo de uso
+seq1 = [1, 4, 7, 10]
+seq2 = [2, 5, 8, 11]
+seq3 = [3, 6, 9, 12]
+
+arrays = [seq1, seq2, seq3]
+
+print("Secuencias originales:")
+for seq in arrays:
+    print(seq)
+
+result = balanced_multiway_merge(arrays)
+print("\nSecuencia ordenada:")
+print(result)
