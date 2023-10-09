@@ -1,0 +1,31 @@
+def polyphase_sort(input_data):
+    # Dividir los datos en dos cintas iniciales
+    tape1 = input_data[:len(input_data) // 2]
+    tape2 = input_data[len(input_data) // 2:]
+
+    # Ordenar las dos cintas iniciales
+    tape1.sort()
+    tape2.sort()
+
+    # Inicializar la cinta de salida
+    output_tape = []
+
+    while tape1 and tape2:
+        # Comparar los primeros elementos de las dos cintas
+        if tape1[0] <= tape2[0]:
+            output_tape.append(tape1.pop(0))
+        else:
+            output_tape.append(tape2.pop(0))
+
+    # Agregar los elementos restantes de ambas cintas a la cinta de salida
+    output_tape.extend(tape1)
+    output_tape.extend(tape2)
+
+    return output_tape
+
+# Ejemplo de uso
+input_data = [3, 1, 4, 2, 5, 6]
+print("Datos de entrada:", input_data)
+
+sorted_data = polyphase_sort(input_data)
+print("Datos ordenados:", sorted_data)
