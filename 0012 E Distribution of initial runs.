@@ -1,0 +1,19 @@
+def distribute_initial_runs(input_data, run_length):
+    initial_runs = []
+
+    # Dividir la entrada en runs de longitud especificada
+    for i in range(0, len(input_data), run_length):
+        run = input_data[i:i+run_length]
+        initial_runs.append(run)
+
+    return initial_runs
+
+# Ejemplo de uso
+input_data = [3, 1, 4, 2, 5, 6, 7, 8, 9]
+run_length = 3
+
+initial_runs = distribute_initial_runs(input_data, run_length)
+print("Runs iniciales:", initial_runs)
+
+#Resultado
+#Runs iniciales: [[3, 1, 4], [2, 5, 6], [7, 8, 9]]
