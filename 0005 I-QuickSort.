@@ -1,0 +1,23 @@
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    pivot = arr[len(arr) // 2]  # Elije un elemento como pivote (en este caso, el del medio)
+    menores, iguales, mayores = [], [], []
+    
+    for elemento in arr:
+        if elemento < pivot:
+            menores.append(elemento)
+        elif elemento == pivot:
+            iguales.append(elemento)
+        else:
+            mayores.append(elemento)
+    
+    # Llamadas recursivas para ordenar las particiones
+    return quick_sort(menores) + iguales + quick_sort(mayores)
+
+# Ejemplo de uso
+arr = [64, 34, 25, 12, 22, 11, 90]
+print("Arreglo desordenado:", arr)
+arr_ordenado = quick_sort(arr)
+print("Arreglo ordenado:", arr_ordenado)
