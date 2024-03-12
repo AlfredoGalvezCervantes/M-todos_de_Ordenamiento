@@ -32,10 +32,10 @@ def heapSort(arr):
 alumnos = [("Alfredo", 100), ("María", 89), ("Juan", 78), ("Luisa", 92), ("Pedro", 85)]
 print("Calificaciones sin ordenar:")
 for alumno in alumnos:
-    print(alumno[0], "-", alumno[1])
+    print(f"{alumno[0]} - {alumno[1]}")
 
 heapSort(alumnos)
 
-print("\nCalificaciones ordenadas:")
-for alumno in alumnos:
-    print(alumno[0], "-", alumno[1])
+print("\nCalificaciones ordenadas de mayor a menor:")
+for alumno in reversed(alumnos):
+    print(alumno[0])
