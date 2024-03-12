@@ -1,0 +1,41 @@
+def heapify(arr, n, i):
+    largest = i  # Inicializamos el nodo raíz como el más grande
+    left = 2 * i + 1  # Índice del hijo izquierdo
+    right = 2 * i + 2  # Índice del hijo derecho
+
+    # Si el hijo izquierdo existe y es mayor que la raíz
+    if left < n and arr[i][1] < arr[left][1]:
+        largest = left
+
+    # Si el hijo derecho existe y es mayor que la raíz o el hijo izquierdo
+    if right < n and arr[largest][1] < arr[right][1]:
+        largest = right
+
+    # Si el nodo más grande no es la raíz
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]  # Intercambiamos con el hijo más grande
+        heapify(arr, n, largest)  # Recursivamente hacer heapify en el subárbol afectado
+
+def heapSort(arr):
+    n = len(arr)
+
+    # Construir un max heap
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(arr, n, i)
+
+    # Extraer elementos uno por uno
+    for i in range(n - 1, 0, -1):
+        arr[i], arr[0] = arr[0], arr[i]  # Intercambiar
+        heapify(arr, i, 0)
+
+# Ejemplo de uso:
+alumnos = [("Alfredo", 100), ("María", 89), ("Juan", 78), ("Luisa", 92), ("Pedro", 85)]
+print("Calificaciones sin ordenar:")
+for alumno in alumnos:
+    print(alumno[0], "-", alumno[1])
+
+heapSort(alumnos)
+
+print("\nCalificaciones ordenadas:")
+for alumno in alumnos:
+    print(alumno[0], "-", alumno[1])
